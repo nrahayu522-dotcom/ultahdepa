@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Ulang Tahun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href ="body {.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .birthday-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {transform: translateY(100vh);}
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <!-- Halaman Login -->
+    <div id="loginPage" class="w-full max-w-md">
+        <div class="birthday-card p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-pink-600 mb-2">Selamat Ulang Tahun!</h1>
+                <p class="text-gray-600">Masuk untuk melihat ucapan spesial</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input 
+                        type="text" 
+                        id="username"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                        placeholder="Masukkan username"
+                        required
+                    >
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input 
+                        type="password" 
+                        id="password"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                        placeholder="Masukkan password"
+                        required
+                    >
+                </div>
+                
+                <button 
+                    type="submit"
+                    class="w-full bg-pink-600 text-white py-3 rounded-lg font-semibold hover:bg-pink-700 transition duration-200"
+                >
+                    Masuk
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center text-sm text-gray-500">
+                <p>Gunakan username: <span class="font-mono">user</span></p>
+                <p>Password: <span class="font-mono">birthday</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman Ucapan -->
+    <div id="birthdayPage" class="hidden w-full max-w-4xl"> 
+        <div class="birthday-card">
+            <!-- Header dengan foto -->
+            <div class="relative">
+                <img 
+                    src="logo.jpg" 
+                    alt="Pesta ulang tahun dengan balon, kue, dan dekorasi warna-warni"
+                    class="w-full h-64 object-cover"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white text-center px-4">
+                        Selamat Ulang Tahun!
+                    </h1>
+                </div>
+            </div>
+            
+            <!-- Konten Ucapan -->
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-semibold text-pink-600 mb-4">congrats udah mulai tua hbd ke 18th</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <img 
+                                src="file1.jpg" 
+                                alt="Foto orang tersenyum merayakan ulang tahun dengan topi pesta dan confetti"
+                                class="w-64 h-64 object-cover rounded-full mx-auto shadow-lg"
+                            >
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Semoga panjang umur, Sehat selalu, Segala apa yang diinginkan bisa tercapai.
+                                Semakin nurut sama Ayah & Bunda, jangan galak sama divaa
+                                
+                            </p>
+                            
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Semangat belajarnya, Semoga bisa masuk PTN + masuk Teknik jugaa, Kalkulus menanti.
+                                Belajar boleh giat, jangan lupa sama kesehatan di porsir belajarnya jangan terlalu over.
+                            </p>
+                            
+                            <div class="bg-pink-50 p-4 rounded-lg">
+                                <p class="text-pink-800 font-semibold">
+                                    "Sukses terussss, jangan lupa apinya"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button 
+                        onclick="logout()"
+                        class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-200"
+                    >
+                        Keluar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Validasi login sederhana
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'user' && password === 'birthday') {
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('birthdayPage').classList.remove('hidden');
+                createConfetti();
+            } else {
+                alert('Username atau password salah! Coba: user / birthday');
+            }
+        });
+        
+        function logout() {
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('birthdayPage').classList.add('hidden');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+        
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b'];
+            const container = document.getElementById('birthdayPage');
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.opacity = Math.random();
+                container.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>

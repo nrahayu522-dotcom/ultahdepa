@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #17b7cc;
+}
+.flower {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+.petal {
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    background-color: pink;
+    border-radius: 50px 50px 0 0;
+}
+.petal:nth-child(1) { transform: rotate(0deg); top: 0; left: 25px; }
+.petal:nth-child(2) { transform: rotate(90deg); top: 25px; left: 0; }
+.petal:nth-child(3) { transform: rotate(180deg); top: 0; left: 25px; }
+.petal:nth-child(4) { transform: rotate(270deg); top: 25px; left: 0; }
+.center {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    border-radius: 50%;
+    top: 35px;
+    left: 35px;
+}
